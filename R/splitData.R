@@ -1,3 +1,8 @@
+## hydromad: Hydrological Modelling and Analysis of Data
+##
+## Copyright (c) Joseph Guillaume <josephguillaume@gmail.com>
+##
+
 splitData<-function(object,start.dates,end.dates){
   ## Split data according to start.dates and end.dates
   cv.data <- mapply(window,start=start.dates,end=end.dates,MoreArgs=list(x=observed(object,all=TRUE,select=TRUE)),SIMPLIFY=FALSE)
