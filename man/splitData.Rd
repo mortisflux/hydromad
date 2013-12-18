@@ -27,14 +27,16 @@ splitData(object, start.dates, end.dates)
 \author{
   Joseph Guillaume
 }
+\seealso{
+  \code{\link{crossValidate}}
+}
 \examples{
 data(Cotter)
 modx <- hydromad(Cotter, sma = "cwi", routing = "expuh",
                  tau_s = c(2,100), v_s = c(0,1))
-object=modx
 start.dates=as.Date(c("1966-05-01","1976-05-1"))
 end.dates=as.Date(c("1976-04-30","1986-04-30"))
-rl=splitData(object,start.dates,end.dates)
+rl=splitData(modx,start.dates,end.dates)
 str(rl)
 ## Fit the first period
 fitx <- fitByOptim(rl[[1]])
