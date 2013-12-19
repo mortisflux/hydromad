@@ -10,7 +10,8 @@ paretoObjectivesVaryWeights<-function (MODEL, objective = hydromad.getOption("ob
                              function(w) fitBy(MODEL,objective=function(...) sum(w*sapply(objective,function(obj) obj(...))),
                                                ...))
          },
-         front <- apply(weights,1,function(w) fitBy(MODEL,objective=weighted.objective,...))
+         front <- apply(weights,1,function(w) fitBy(MODEL,objective=function(...) sum(w*sapply(objective,function(obj) obj(...))),
+                                                    ...))
          ) ##switch parallel
   names(front) <- apply(weights,1,paste,collapse="_")
   front <- as.runlist(front)
