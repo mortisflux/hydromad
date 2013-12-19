@@ -2,7 +2,7 @@ evalPars<- function(par.matrix,object,objective=hydromad.getOption("objective"))
   stopifnot(inherits(object,"hydromad"))
   switch(hydromad.getOption("parallel"),
          "clusterApply"={
-           objs <- clusterApply(cl=cl,par.matrix,1,
+           objs <- parApply(cl=cl,par.matrix,1,
                                  function(p,object,objective) {
                                    thisMod <- update(object, newpars = p)
                                    if (!isValidModel(thisMod)) return(NA)
