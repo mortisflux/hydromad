@@ -116,7 +116,7 @@ update.runlist <-
 {
   switch(hydromad.getOption("parallel"),
          "clusterApply"={
-           runs <- as.runlist(parLApply(cl,object,update,...))
+           runs <- as.runlist(parLapply(cl,object,update,...))
          },
          runs <- as.runlist(lapply(object, update, ...))
          ) ## switch parallel
