@@ -222,6 +222,7 @@ export(crossValidate)
 S3method(summary,crossvalidation)
 
 export(paretoObjectivesNsga2)
+export(paretoObjectivesVaryWeights)
 
 ## ParetoFiltering.R
 export(paretoCatchments)
