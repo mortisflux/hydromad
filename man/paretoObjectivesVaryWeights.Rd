@@ -51,6 +51,7 @@ modx <- hydromad(x, sma = "cwi", routing = "expuh",
                  tau_s = c(2,100), v_s = c(0,1))
 
 ## Uncomment to parallelise the fitBy runs
+#library(parallel)
 #cl <- makeCluster(getOption("cl.cores", 2))
 #clusterEvalQ(cl,library(hydromad))
 #hydromad.options(parallel="clusterApply")
