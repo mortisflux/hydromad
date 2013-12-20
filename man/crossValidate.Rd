@@ -9,22 +9,28 @@
   their performance on all other
 }
 \usage{
-crossValidate(MODEL, start.dates, end.dates, fitBy, ...)
+crossValidate(MODEL, periods, name.Model.str = paste(MODEL$sma, MODEL$routing), 
+    name.Cal.objfn = "unknown", fitBy, ...)
 }
 \arguments{
   \item{MODEL}{
     an object of class \code{hydromad}.
-}
-  \item{start.dates}{
-    dates at which each period should start, passed to \code{\link{splitData}}
-}
-\item{end.dates}{
-  dates at which each period should end, passed to \code{\link{splitData}}
-}
+  }
+  \item{periods}{
+    named list of start and end dates, passed to \code{\link{splitData}}
+  }
+  \item{name.Model.str}{
+    Name to give to this model structure to allow a combined analysis
+  }
+  \item{name.Cal.objfn}{
+    Name to give to this model identification process (e.g. name of
+    objective function and/or optimisation algorithm), to allow a
+    combined analysis
+  }
   \item{fitBy}{
     function to estimate parameters of \code{MODEL},
     e.g. \code{\link{fitByOptim}}, \code{\link{fitBySCE}}
-}
+  }
   \item{\dots}{
     Arguments passed to \code{fitBy}
 }
@@ -37,19 +43,20 @@ crossValidate(MODEL, start.dates, end.dates, fitBy, ...)
 Joseph Guillaume  
 }
 \seealso{
-  \code{\link{paretoCatchments}}
+  \code{\link{paretoTimeAnalysis}}
   }
 \examples{
 data(Cotter)
 modx <- hydromad(Cotter, sma = "cwi", routing = "expuh",
                  tau_s = c(2,100), v_s = c(0,1))
-start.dates=as.Date(c("1966-05-01","1976-05-1"))
-end.dates=as.Date(c("1976-04-30","1986-04-30"))
+periods=list(P1=as.Date(c("1966-05-01","1976-04-30")),
+             P2=as.Date(c("1976-05-1","1986-04-30")))
 ## Estimate parameters using single fitByOptim run
 ## from single initial parameter set
-runs=crossValidate(modx,start.dates,end.dates,fitByOptim,samples=1)
+runs=crossValidate(modx,periods=periods,fitBy=fitByOptim,samples=1)
 summary(runs)
 ## Cross-validation statistics can then be analysed with other methods
 areModelsDominated(summary(runs))
 cast(melt(summary(runs),id.vars=c("calib.period","sim.period")),calib.period~variable+sim.period)
+paretoTimeAnalysis(rl)
 }
