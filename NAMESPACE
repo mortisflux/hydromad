@@ -231,6 +231,7 @@ export(areModelsDominated)
 export(getDominatedLong)
 export(paretoFilter)
 
+export(paretoTimeAnalysis)
 
 ## MISCELLANEOUS
 
