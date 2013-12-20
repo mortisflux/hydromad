@@ -7,7 +7,7 @@
   Creates a runlist of model instances with separate data periods
 }
 \usage{
-splitData(object, start.dates, end.dates)
+splitData(object, start.dates=NULL, end.dates=NULL,periods=NULL)
 }
 \arguments{
   \item{object}{
@@ -18,7 +18,11 @@ splitData(object, start.dates, end.dates)
 }
 \item{end.dates}{
       dates at which each model instance should end, passed as \code{end} to \code{\link{window.zoo}}
-}
+    }
+    \item{periods}{
+      named list of start and end dates. Overrides \code{start.dates} and
+      \code{end.dates} if it is not \code{NULL}
+    }
 }
 \value{
   A runlist of hydromad objects with data periods starting at
