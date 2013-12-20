@@ -58,5 +58,5 @@ summary(runs)
 ## Cross-validation statistics can then be analysed with other methods
 areModelsDominated(summary(runs))
 cast(melt(summary(runs),id.vars=c("calib.period","sim.period")),calib.period~variable+sim.period)
-paretoTimeAnalysis(rl)
+paretoTimeAnalysis(runs)
 }
