@@ -102,11 +102,16 @@ objFunVal.hydromad <-
         objFunVal1(objective, ...)
 }
 
-objFunVal.runlist <- function(x, objective = list(hydromad.getOption("objective"),mean), ...){
-  stopifnot(is.list(objective) && length(objective)==2)
-  vals <- sapply(x, objFunVal, objective[[1]], ...)
-  agg <- objective[[2]](vals)
-  stopifnot(length(agg)==1)
-  return(agg)
+objFunVal.runlist <- function (x, objective = list(hydromad.getOption("objective"),mean), ...) 
+{
+  if(is.list(objective) && length(objective) == 2){
+    vals <- sapply(x, objFunVal, objective[[1]], ...)
+    agg <- objective[[2]](vals)
+    stopifnot(length(agg) == 1)
+    return(agg)
+  } else if(is.function(objective)){
+    return(objective(x,...))
+  }
+  stop("Objective is not a list of length 2 or a function")
 }
   

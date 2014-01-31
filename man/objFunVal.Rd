@@ -28,8 +28,11 @@ objFunVal(x, objective, ...)
     \code{X} and optionally \code{U} and \code{P}.
   }
   \item{objective}{
-    the objective function, or a list of objective functions. See Details.
-    For a \code{runlist}, a list with two elements, the first as for
+    the objective function, or a list of objective functions. See
+Details.
+
+    For a \code{runlist}, either: 1) a function taking a runlist as
+          first argument or 2) a list with two elements, the first as for
           \code{hydromad} and \code{default}, the second a function that
           aggregates the objectives to a single value.
   }
