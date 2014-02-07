@@ -224,6 +224,9 @@ S3method(summary,crossvalidation)
 export(paretoObjectivesNsga2)
 export(paretoObjectivesVaryWeights)
 
+## filehash.R
+S3method(update, filehashRDS)
+
 ## ParetoFiltering.R
 export(paretoCatchments)
 export(plotPCNSE)
