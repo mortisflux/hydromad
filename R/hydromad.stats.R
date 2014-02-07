@@ -52,8 +52,8 @@ buildCachedObjectiveFun <-
     ## default set of stats
     list("bias" = function(Q, X, ...) mean(X - Q, na.rm = TRUE),
          "rel.bias" = function(Q, X, ...) {
-             ok <- complete.cases(X, Q)
-             mean((X-Q)[ok]) / mean(Q[ok])
+             ok <- complete.cases(coredata(X), coredata(Q))
+             mean((coredata(X) - coredata(Q))[ok])/mean(coredata(Q)[ok])
          },
          "abs.err" = function(Q, X, ...) mean(abs(X - Q), na.rm = TRUE),
          "RMSE" = function(Q, X, ...) sqrt(mean((X - Q)^2, na.rm = TRUE)),
@@ -61,11 +61,11 @@ buildCachedObjectiveFun <-
              nseStat(coredata(Q), coredata(X), ...)
          },
          "r.sq.sqrt" = function(Q, X, ...) {
-             nseStat(Q, X, ..., trans = sqrt)
+             nseStat(coredata(Q), coredata(X), ..., trans = sqrt)
          },
          "r.sq.log" = function(Q, X, ...) {
-             nseStat(Q, X, ..., trans = function(x)
-                     log(x + .(quantile(coredata(subset(Q, Q>0)), 0.1, na.rm = TRUE, names = FALSE))))
+             nseStat(coredata(Q), coredata(X), ..., trans = function(x)
+                     log(x + .(quantile(coredata(Q)[coredata(Q)>0], 0.1, na.rm = TRUE, names = FALSE))))
          },
          "r.sq.boxcox" = function(Q, X, ...) {
              .(buildTsObjective(Q, boxcox = TRUE))(Q, X, ...)
