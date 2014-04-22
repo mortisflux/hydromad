@@ -24,7 +24,6 @@ paretoCatchments <- function(stat,show.models=NA,objectives="r.squared"){
   print(model.ok)
   
   if (!is.na(show.models)){
-    cat("\nWriting csv of model realisations and whether dominated for each catchment\n")
     isd <- do.call(rbind,stat.split)
     ## FIXME isd$calib.period <- period.labels[as.character(isd$calib.period)]
     isd$dominated <- ifelse(isd$dominated,"Yes","No")
@@ -32,9 +31,10 @@ paretoCatchments <- function(stat,show.models=NA,objectives="r.squared"){
                c(c("Catchment","dominated","Model.str","calib.period"),
                  setdiff(names(isd),c("Catchment","dominated","Model.str","calib.period")))
                ]
-    if(isTrue(show.models)){
+    if(isTRUE(show.models)){
       print(isd)
     } else if(!is.na(show.models)){
+      cat("\nWriting csv of model realisations and whether dominated for each catchment\n")
       write.csv(isd,sprintf("%s_isdominated_models_catchments.csv",show.models),row.names=FALSE)
     }
   } else {
