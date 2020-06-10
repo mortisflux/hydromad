@@ -64,6 +64,8 @@ jobs:
         run: |
           remotes::install_deps(dependencies = TRUE)
           remotes::install_cran("rcmdcheck")
+          remotes::install_coda("coda")
+          remotes::install_github("TillF/ppso")
           
         shell: Rscript {0}
 
