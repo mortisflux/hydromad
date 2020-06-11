@@ -15,7 +15,7 @@ Please note we have a code of conduct that we request you adhere to in all your 
 Small typos or grammatical errors in documentation may be edited directly using
 the GitHub web interface, so long as the changes are made in the _source_ file.
 
-*  YES: you edit a roxygen comment in a `.R` file below `R/`.
+*  YES: you edit a roxygen2 comment in a `.R` file below `R/`.
 *  NO: you edit an `.Rd` file below `man/`.
 
 ### Prerequisites
@@ -43,8 +43,7 @@ with test cases included are easier to accept.
 current development version header describing the changes made followed by your
 GitHub username, and links to relevant issue(s)/PR(s).
 
-### See rOpenSci [contributing guide](https://devguide.ropensci.org/contributingguide.html)
-for further details.
+#### See rOpenSci [contributing guide](https://devguide.ropensci.org/contributingguide.html) for further details.
 
 ## Code of Conduct
 
@@ -115,6 +114,4 @@ reporter of any incident.
 
 ### Attribution
 
-This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available at
-https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+This Code of Conduct is adapted from the Contributor Covenant, version 2.0, available at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
