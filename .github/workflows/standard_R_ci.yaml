@@ -69,35 +69,17 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
-          
-      - name: Install GTK Linux
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install gtk2.0
-          
-      - name: Checkout
-        uses: actions/checkout@v2
-      
-      - name: Install GTK Windows
-        uses: crazy-max/ghaction-chocolatey@v1
-        run: |
-                 
-      
-      - name: 
-        if: runner.os == 'Windows'
-        run: |
-          
-
+        
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
+          remotes::install_cran("lintr")
           remotes::install_cran("rcmdcheck")
           remotes::install_coda("coda")
           remotes::install_github("TillF/ppso")
           remotes::install_url("http://download.r-forge.r-project.org/src/contrib/dream_0.4-2.tar.gz")
           remotes::install_url("https://cran.r-project.org/src/contrib/Archive/gWidgets/gWidgets_0.0-54.tar.gz")
           remotes::install_url("https://cran.r-project.org/src/contrib/Archive/playwith/playwith_0.9-54.tar.gz")
-          
         shell: Rscript {0}
 
       - name: Check
@@ -112,3 +94,7 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
+
+      - name: Lint
+        run: lintr::lint_package()
+        shell: Rscript {0}
