@@ -31,6 +31,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install GTK Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install gtk2.0
+        
+      - name: GTK for Windows
+        if: runner.os == 'Windows'
+        run: |
+          choco install gtk-runtime
+
       - uses: r-lib/actions/setup-r@master
         with:
           r-version: ${{ matrix.config.r }}
@@ -59,6 +69,24 @@ jobs:
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
           sudo -s eval "$sysreqs"
+          
+      - name: Install GTK Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install gtk2.0
+          
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Install GTK Windows
+        uses: crazy-max/ghaction-chocolatey@v1
+        run: |
+                 
+      
+      - name: 
+        if: runner.os == 'Windows'
+        run: |
+          
 
       - name: Install dependencies
         run: |
